@@ -1,4 +1,4 @@
- # Default excludes
+# Default excludes
  
 # Binaries
 *.7z
@@ -18,4 +18,4 @@
 .settings/
 .classpath
 .project
-/bin/
+/bin//bin/
