@@ -1,6 +1,13 @@
 package logos;
 
 public class Application {
+	
+	static int a=7;
+
+	public static void main(String[] args) {
+		System.out.println(a);
+	}
+	
 //  boolean a = true;
 		//  char b = 'o';
 		//  byte c = 1;
@@ -28,6 +35,7 @@ public class Application {
 		//  System.out.print("Double max: " + Double.MAX_VALUE + " -- ");
 		//  System.out.println("Double min: " + Double.MIN_VALUE);
 		//
+	
 	
 	////////////////////////////////////
 		//  int[] arr = { 6, 3, 7, 13, 4, 9, 1, -3, 5, 55 };
