@@ -8,6 +8,10 @@ public class Application {
 		System.out.println(a);
 	}
 	
+	
+	
+	///olya
+	
 //  boolean a = true;
 		//  char b = 'o';
 		//  byte c = 1;
