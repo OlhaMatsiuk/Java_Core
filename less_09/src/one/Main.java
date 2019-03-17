@@ -6,6 +6,8 @@ package one;
 
 import java.util.Scanner;
 
+
+
 /**
  * @author Olha Zakharchuk
  * @version 1.0 
