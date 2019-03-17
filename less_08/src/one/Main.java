@@ -5,7 +5,7 @@ public class Main {
 	static Seasons[] array2 = Seasons.values();
 	static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws WrongInputConsoleParametersException {
 
 		while (true) {
 			menu();
@@ -58,7 +58,7 @@ public class Main {
 		System.out.println("Натичніть 10,щоб вивести на екран чи введений з консолі місяць має парну кількість днів");
 	}
 
-	static void first() {
+	static void first() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter Month");
 		sc = new Scanner(System.in);
@@ -70,12 +70,13 @@ public class Main {
 		if (flag) {
 			System.out.println("Month exist");
 		} else {
-			System.out.println("Month doesnt exit");
+			String str = "Month doesnt exit";
+			throw new WrongInputConsoleParametersException(str);
 		}
 
 	}
 
-	static void second() {
+	static void second() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter season");
 		sc = new Scanner(System.in);
@@ -102,12 +103,13 @@ public class Main {
 		}
 
 		else {
-			System.out.println("Season doesnt exit");
+			String str = "Season doesnt exit";
+			throw new WrongInputConsoleParametersException(str);
 		}
 
 	}
 
-	static void third() {
+	static void third() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter month");
 		sc = new Scanner(System.in);
@@ -134,12 +136,14 @@ public class Main {
 		}
 
 		else {
-			System.out.println("Season doesnt exit");
+			String str = "Month doesnt exit";
+			throw new WrongInputConsoleParametersException(str);
+
 		}
 
 	}
 
-	static void fourth() {
+	static void fourth() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter month");
 		sc = new Scanner(System.in);
@@ -166,11 +170,12 @@ public class Main {
 		}
 
 		else {
-			System.out.println("Season doesnt exit");
+			String str = "Season doesnt exit";
+			throw new WrongInputConsoleParametersException(str);
 		}
 	}
 
-	static void fifth() {
+	static void fifth() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter month");
 		sc = new Scanner(System.in);
@@ -197,12 +202,13 @@ public class Main {
 		}
 
 		else {
-			System.out.println("Season doesnt exit");
+			String str = "Month doesnt exit";
+			throw new WrongInputConsoleParametersException(str);
 		}
 
 	}
 
-	static void sixth() {
+	static void sixth() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter Season");
 
@@ -224,12 +230,13 @@ public class Main {
 		}
 
 		if (!flag) {
-			System.out.println("Season doesnt exit");
+			String str = "Season doesnt exit";
+			throw new WrongInputConsoleParametersException(str);
 		}
 
 	}
 
-	static void seventh() {
+	static void seventh() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter Season");
 
@@ -251,14 +258,14 @@ public class Main {
 		}
 
 		if (!flag) {
-			System.out.println("Season doesnt exit");
+			String str = "Season doesnt exit";
+			throw new WrongInputConsoleParametersException(str);
 		}
 
 	}
 
-	static void eighth() {
+	static void eighth() throws WrongInputConsoleParametersException {
 
-		System.out.println("Enter number of day");
 		sc = new Scanner(System.in);
 
 		boolean flag = false;
@@ -279,14 +286,15 @@ public class Main {
 
 			}
 		} else {
-			System.out.println("Day doesnt exit");
+			String str = "Day doesnt exit";
+			throw new WrongInputConsoleParametersException(str);
 		}
 
 	}
 
 	static void ninth() {
 
-		System.out.println("Enter number of day");
+	
 		sc = new Scanner(System.in);
 
 		boolean flag = false;
@@ -312,7 +320,7 @@ public class Main {
 
 	}
 
-	static void tenth() {
+	static void tenth() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter Month");
 		sc = new Scanner(System.in);
@@ -332,9 +340,10 @@ public class Main {
 			else {
 				System.out.println("No");
 			}
-		} else
-			System.out.println("Month doesnt exit");
-
+		} else {
+		String str = "Month doesnt exit";
+		throw new WrongInputConsoleParametersException(str);
+		}
 	}
 
 	///////////////////////////////
