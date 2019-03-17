@@ -3,7 +3,7 @@ package two;
 public class Methods {
 	private double a;
 	private double b;
-	
+	   
 
 	public Methods(double a, double b) {
 		this.a = a;

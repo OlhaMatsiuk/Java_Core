@@ -5,7 +5,7 @@ public class WrongInputConsoleParametersException extends Exception{
 	private String str;
 
 	public String getStr() {
-		return str;
+		return str;   
 	}
 
 	public WrongInputConsoleParametersException(String str) {
