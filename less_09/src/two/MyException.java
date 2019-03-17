@@ -12,7 +12,5 @@ public class MyException extends Exception{
 		return str;
 	}
 	
-	
-	
 
 }
