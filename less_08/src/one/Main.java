@@ -1,14 +1,29 @@
+/*
+ * LOGOS IT Academy
+ */
+
 package one;
+
 import java.util.Scanner;
+
+/**
+ * @author Olha Zakharchuk
+ * @version 1.0 
+ * @since Java 1.8
+ * */
+
 public class Main {
+	
 	static Months[] array = Months.values();
 	static Seasons[] array2 = Seasons.values();
 	static Scanner sc = new Scanner(System.in);
-
+	
+	
+	// each case is responsible for one function
 	public static void main(String[] args) throws WrongInputConsoleParametersException {
 
 		while (true) {
-			menu();
+			menu(); 
 			switch (sc.next()) {
 			case "1":
 				first();
@@ -44,7 +59,7 @@ public class Main {
 		}
 
 	}
-
+	//display the menu
 	static void menu() {
 		System.out.println("Натичніть 1, щоб перевірити чи є такий місяць");
 		System.out.println("Натичніть 2, щоб вивести всі місяці з такою ж порою року");
@@ -58,6 +73,12 @@ public class Main {
 		System.out.println("Натичніть 10,щоб вивести на екран чи введений з консолі місяць має парну кількість днів");
 	}
 
+	
+	
+	/**
+	 * Check whether there is such a month
+	 * 
+	 * */
 	static void first() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter Month");
@@ -76,6 +97,11 @@ public class Main {
 
 	}
 
+	
+	/**
+	 * Withdraw all months with the same period of the year
+	 * 
+	 * */
 	static void second() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter season");
@@ -109,8 +135,11 @@ public class Main {
 
 	}
 
+	/**
+	 * Withdraw all months having the same number of days
+	 * 
+	 * */
 	static void third() throws WrongInputConsoleParametersException {
-
 		System.out.println("Enter month");
 		sc = new Scanner(System.in);
 
@@ -142,7 +171,13 @@ public class Main {
 		}
 
 	}
-
+	
+	
+	
+	/**
+	 * Display all the months that have fewer days
+	 * 
+	 * */
 	static void fourth() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter month");
@@ -175,6 +210,12 @@ public class Main {
 		}
 	}
 
+	
+	
+	/**
+	 * Display all the months that have more days
+	 * 
+	 * */
 	static void fifth() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter month");
@@ -207,7 +248,12 @@ public class Main {
 		}
 
 	}
-
+	
+	
+	/**
+	 * Display the next season
+	 * 
+	 * */
 	static void sixth() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter Season");
@@ -235,7 +281,11 @@ public class Main {
 		}
 
 	}
-
+	
+	/**
+	 * Display the last season
+	 * 
+	 * */
 	static void seventh() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter Season");
@@ -263,7 +313,12 @@ public class Main {
 		}
 
 	}
-
+	
+	
+	/**
+	 * Display all the months that have a pair of days
+	 * 
+	 * */
 	static void eighth() throws WrongInputConsoleParametersException {
 
 		sc = new Scanner(System.in);
@@ -291,10 +346,13 @@ public class Main {
 		}
 
 	}
-
+	
+	/**
+	 * Display all the months that have a odd number of days
+	 * 
+	 * */
 	static void ninth() {
 
-	
 		sc = new Scanner(System.in);
 
 		boolean flag = false;
@@ -320,6 +378,11 @@ public class Main {
 
 	}
 
+	
+	/**
+	 * The month you entered from the console has a couple of days
+	 * 
+	 * */
 	static void tenth() throws WrongInputConsoleParametersException {
 
 		System.out.println("Enter Month");
@@ -341,8 +404,8 @@ public class Main {
 				System.out.println("No");
 			}
 		} else {
-		String str = "Month doesnt exit";
-		throw new WrongInputConsoleParametersException(str);
+			String str = "Month doesnt exit";
+			throw new WrongInputConsoleParametersException(str);
 		}
 	}
 
@@ -371,6 +434,6 @@ public class Main {
 		}
 		return flag;
 	}
-	
+
 	////////////////////////////
 }
