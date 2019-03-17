@@ -7,7 +7,7 @@ public class MyException extends Exception{
 	public MyException(String str) {
 		super(str);
 	}
-    
+        
 	public String getStr() {
 		return str;
 	}

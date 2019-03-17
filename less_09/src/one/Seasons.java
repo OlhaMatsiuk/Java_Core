@@ -1,5 +1,5 @@
 package one;
 
-public enum Seasons {  
+public enum Seasons {     
 	WINTER, SPRING, SUMMER, AUTUMN;
 }
