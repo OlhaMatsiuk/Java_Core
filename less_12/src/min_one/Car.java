@@ -1,4 +1,4 @@
-package max;
+package min_one;
 
 public class Car {
 	

@@ -1,4 +1,4 @@
-package max;
+package min_one;
 
 import java.util.Arrays;
 import java.util.Random;
