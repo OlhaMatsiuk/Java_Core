@@ -1,7 +1,7 @@
 package min_one;
 
 public class Helm {
-	
+
 	private int diameter;
 	private String typeOfMaterial;
 	
@@ -29,5 +29,7 @@ public class Helm {
 	}
 	
 	
-
 }
+
+	
+

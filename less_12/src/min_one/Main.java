@@ -1,26 +1,21 @@
 package min_one;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-
+	
 	public static void main(String[] args) {
 
-		Car[][] array = new Car[getRandom(2, 5)][getRandom(2, 5)];
+		ArrayList<Car> array = new ArrayList<Car>();
 
-		// Car [][] array = new Car[2][2];
 
-		for (int i = 0; i < array.length; i++) {
+		for (int i = 0; i < getRandom(2,10) ; i++) {
 
-			for (int j = 0; j < array[i].length; j++) {
-
-				array[i][j] = new Car(getRandom(10, 100), getRandom(1950, 2010), new Engine(getRandom(1, 8)),
-						new Helm(getRandom(15, 50), "fgf"));
-
-			}
-
+				array.add(new Car(getRandom(10, 100), getRandom(1950, 2010), new Engine(getRandom(1, 8)),
+						new Helm(getRandom(15, 50), "fgf")));
 		}
 
 		Scanner scan = new Scanner(System.in);
@@ -33,7 +28,7 @@ public class Main {
 
 			case 1:
 
-				System.out.println(Arrays.deepToString(array));
+				System.out.println(array);
 
 				break;
 
@@ -42,10 +37,12 @@ public class Main {
 				Car car = new Car(getRandom(10, 100), getRandom(1950, 2010), new Engine(getRandom(1, 8)),
 						new Helm(getRandom(15, 50), "wor"));
 					
-				for(int i=0;i<array.length;i++)
-				    Arrays.fill( array[i], car );
-
-				System.out.println(Arrays.deepToString(array));
+				for(int i=0;i<array.size();i++) {
+				
+				    array.add(i, car);
+					array.remove(i+1);
+				}
+				System.out.println(array);
 
 				break;
 
@@ -72,4 +69,7 @@ public class Main {
 		System.out.println("Нажміть 2, щоб всі елементти даного масиву замінити на обєкт класу Car");
 
 	}
+
+
 }
+

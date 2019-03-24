@@ -1,7 +1,7 @@
 package min_one;
 
 public class Engine {
-	
+
 	private int numberOfCylinders;
 
 	public Engine(int numberOfCylinders) {
@@ -19,5 +19,4 @@ public class Engine {
 	}
 	
 	
-
 }
