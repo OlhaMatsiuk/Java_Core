@@ -1,11 +1,11 @@
-package min_one;
+package max;
 
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-
+	
 	public static void main(String[] args) {
 
 		Car[][] array = new Car[getRandom(2, 5)][getRandom(2, 5)];
@@ -72,4 +72,6 @@ public class Main {
 		System.out.println("Нажміть 2, щоб всі елементти даного масиву замінити на обєкт класу Car");
 
 	}
+
+
 }

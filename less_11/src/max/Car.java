@@ -1,7 +1,7 @@
-package min_one;
+package max;
 
 public class Car {
-	
+
 	private int numberOfHorsepower;
 	private int yearOfIssue;
 	private Engine engine;
@@ -38,14 +38,4 @@ public class Car {
 				+ ", " + helm + "]";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

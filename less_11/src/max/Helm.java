@@ -1,7 +1,7 @@
-package min_one;
+package max;
 
 public class Helm {
-	
+
 	private int diameter;
 	private String typeOfMaterial;
 	
@@ -29,5 +29,4 @@ public class Helm {
 	}
 	
 	
-
 }
