@@ -1,4 +1,3 @@
-
 ##########################
 ## Java
 ##########################
@@ -36,7 +35,7 @@ out/
 .classpath
 .project
 .settings/
-bin/
+/bin/
 tmp/
 *.tmp
 *.bak

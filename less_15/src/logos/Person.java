@@ -1,15 +1,15 @@
-package min;
+package logos;
 
-public class Person implements Comparable<Person>{
+public class Person {
 	
 	private String name;
 	private int age;
 	
 	public Person(String name, int age) {
+		super();
 		this.name = name;
 		this.age = age;
 	}
-
 
 	public String getName() {
 		return name;
@@ -26,14 +26,6 @@ public class Person implements Comparable<Person>{
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-	@Override
-	public String toString() {
-		return "Person [name=" + name + ", age=" + age + "]";
-	}
-	
-	
-
 
 	@Override
 	public int hashCode() {
@@ -43,7 +35,6 @@ public class Person implements Comparable<Person>{
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -64,11 +55,11 @@ public class Person implements Comparable<Person>{
 		return true;
 	}
 
-
 	@Override
-	public int compareTo(Person o) {
-		return this.name.compareTo(o.getName());
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + "]";
 	}
+	
 	
 
 }
