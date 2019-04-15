@@ -9,12 +9,15 @@ public class Main {
 		
 		List<Integer> list = new ArrayList<>();
 		
+		// В List<Integer> можна додати елементи тільки типу Integer
 		list.add(new Integer(13));
 		list.add(13);	
+		
+		// Також можна використовувати тип string перетворивши його, автоматично використається метод parseInt
 		list.add(new Integer ("13"));
 		
-		//list.add(new Integer ("13aa"));  помилка
-		//list.add("13");  помилка
+		//list.add(new Integer ("13aa"));  помилка, бо неможливо перетворити в цілочисельний тип
+		//list.add("13");  помилка, бо не використали приведення до Integer
 		
 		System.out.println(list);
 		System.out.println();
