@@ -1,7 +1,7 @@
 package one;
 
-public abstract class Pet {
+public interface Pet {
 	
-	abstract void voice();
+	 String voice();
 	
 }
