@@ -80,6 +80,8 @@ public class Deputy extends Person{
 	public void setBribeSize(int brideSize) {
 		this.bribeSize = brideSize;
 	}
+	
+	
 
 	@Override
 	public String toString() {
