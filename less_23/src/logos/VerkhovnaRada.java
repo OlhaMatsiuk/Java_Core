@@ -2,7 +2,10 @@ package logos;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public final class VerkhovnaRada {
 	
@@ -25,19 +28,31 @@ public final class VerkhovnaRada {
 	
 	ArrayList<Faction> verRad = new ArrayList<>();
 	
+	Supplier<Faction> getDeputyGroup = () -> {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Введіть назву фракції:");
+		String deputyGroupName = scanner.next();
+
+		return new Faction(deputyGroupName);
+	};
+
+	public Optional<Faction> findDeputyGroup() {
+		Faction DeputyGroupTyped = getDeputyGroup.get();
+
+		Predicate<Faction> isEqualDeputyGroupName = deputyGroup -> deputyGroup.getNameFaction()
+				.equalsIgnoreCase(DeputyGroupTyped.getNameFaction());
+		
+		Optional<Faction> deputyGroupFound = verRad.stream().filter(isEqualDeputyGroupName)
+				.findFirst();
+
+		return deputyGroupFound;
+	}
+	
 	public void addFaction() {
 		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Введіть назву фракції: ");
-		
-		String nameFaction = scan.next();
-		
-		System.out.println();
-		
-		Faction newFaction = new Faction(nameFaction);
-		
-		verRad.add(newFaction);
+		Faction deputyGroup = getDeputyGroup.get();
+
+		verRad.add(deputyGroup);
 		
 		System.out.println("Нова фракція додана!");
 		
@@ -47,29 +62,13 @@ public final class VerkhovnaRada {
 	
 	public void removeFaction() {
 		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Введіть назву фракції: ");
-		
-		String nameFaction = scan.next();
-		
-		boolean flag2 = isFactionExist(verRad, nameFaction);
-		
-		if(flag2) {
-			
-			Iterator<Faction> iterator = verRad.iterator();
+		Optional<Faction> deputyGroupFound = findDeputyGroup();
 
-			while (iterator.hasNext()) {
-
-				Faction next = iterator.next();
-
-				if (next.getNameFaction().equals(nameFaction)) {
-					System.out.println(next.getNameFaction() + " Буде видалений!");
-					iterator.remove();
-
-				}
-			}
-			
+		if (deputyGroupFound.isPresent()) {
+			verRad.remove(deputyGroupFound.get());
+			System.out.println(deputyGroupFound.get().toString() + " видалена!");
+		} else {
+			System.out.println("Фракція не існує!");
 		}
 			
 	}
@@ -77,78 +76,44 @@ public final class VerkhovnaRada {
 	
 	public void allFactions() {
 		
-		for (Faction fac : verRad) {
-
-			System.out.println(fac.toString());
-			
-		}
+		verRad.forEach(System.out::println);
 		
 	}
 	
 	
 	public void clearFaction() {
 		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Введіть назву фракції: ");
-		
-		String nameFaction = scan.next();
-		
-		
-		for (Faction fac : verRad) {
+		Optional<Faction> deputyGroupFound = findDeputyGroup();
 
-			if(fac.getNameFaction().equals(nameFaction)) {
-				
-				
-				fac.clearFaction();
-
-				
-			}
-				
-				
-			
+		if (deputyGroupFound.isPresent()) {
+			deputyGroupFound.get().clearFaction();
+		} else {
+			System.out.println("Фракція не існує!");
 		}
 		
 	}
 	
 	public void getFactions() {
 		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Введіть назву фракції: ");
-		
-		String nameFaction = scan.next();
-		
-		
-		for (Faction fac : verRad) {
+		Optional<Faction> deputyGroupFound = findDeputyGroup();
 
-			if(fac.getNameFaction().equals(nameFaction))
-			
-			fac.allDeputyFaction();
-			
-			
+		if (deputyGroupFound.isPresent()) {
+			System.out.println(deputyGroupFound.get().toString());
+			deputyGroupFound.get().allDeputyFaction();
+		} else {
+			System.out.println("Фракція не існує!");
 		}
 		
 	}
 	
 	public void addDeputyToFaction() {
 		
-		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Введіть назву фракції: ");
-		
-		String nameFaction = scan.next();
-		
-		
-		for (Faction fac : verRad) {
+		Optional<Faction> deputyGroupFound = findDeputyGroup();
 
-			if(fac.getNameFaction().equals(nameFaction))
-			{	
-				fac.addDeputy();
-			
-			}
-		
+		if (deputyGroupFound.isPresent()) {
+			deputyGroupFound.get().addDeputy();
+		} else {
+			System.out.println("Фракція не існує!");
 		}
 		
 		
@@ -156,21 +121,12 @@ public final class VerkhovnaRada {
 	
 	public void removeDeputyFromFaction() {
 		
+		Optional<Faction> deputyGroupFound = findDeputyGroup();
 
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Введіть назву фракції: ");
-		
-		String nameFaction = scan.next();
-		
-		
-		for (Faction fac : verRad) {
-
-			if(fac.getNameFaction().equals(nameFaction))
-			{	
-				fac.removeDeputy();
-			}
-			
+		if (deputyGroupFound.isPresent()) {
+			deputyGroupFound.get().removeDeputy();
+		} else {
+			System.out.println("Фракція не існує!");
 		}
 		
 		
@@ -179,79 +135,36 @@ public final class VerkhovnaRada {
 	
 	public void allBribeTakersInFaction() {
 		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Введіть назву фракції: ");
-		
-		String nameFaction = scan.next();
-		
-		
-		for (Faction fac : verRad) {
+		Optional<Faction> deputyGroupFound = findDeputyGroup();
 
-			if(fac.getNameFaction().equals(nameFaction))
-			{	
-				fac.allBribeTakers();
-			}
-			
-		}
+		if (deputyGroupFound.isPresent()) {
+			deputyGroupFound.get().allBribeTakers();
+		} 
 		
 	}
 	
 	
 	public void bigBribeTakerInFaction() {
 		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Введіть назву фракції: ");
-		
-		String nameFaction = scan.next();
-		
-		
-		for (Faction fac : verRad) {
+		Optional<Faction> deputyGroupFound = findDeputyGroup();
 
-			if(fac.getNameFaction().equals(nameFaction))
-			{	
-				fac.bigBribeTaker();
-			}
-			
-		}
+		if (deputyGroupFound.isPresent()) {
+			deputyGroupFound.get().bigBribeTaker();
+		} 
 		
 	}
 	
 	
 	public void allDeputyInFaction() {
 		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Введіть назву фракції: ");
-		
-		String nameFaction = scan.next();
-		
-		
-		for (Faction fac : verRad) {
+		Optional<Faction> deputyGroupFound = findDeputyGroup();
 
-			if(fac.getNameFaction().equals(nameFaction))
-			{	
-				fac.allDeputyFaction();
-			}
-			
-		}
+		if (deputyGroupFound.isPresent()) {
+			deputyGroupFound.get(). allDeputyFaction();
+		} 
 		
 	}
 	
 	
 	
-	private static boolean isFactionExist(ArrayList<Faction> verRad, String nameFaction) {
-		boolean flag = false;
-
-		for (Faction fac : verRad) {
-
-			if (fac.getNameFaction().equals(nameFaction)) {
-				flag = true;
-			}
-		}
-
-		return flag;
-	}
-
 }

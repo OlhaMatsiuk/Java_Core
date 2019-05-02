@@ -1,8 +1,13 @@
 package logos;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
-import java.util.Iterator;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class Faction {
 
@@ -27,11 +32,11 @@ public class Faction {
 	}
 
 	ArrayList<Deputy> faction = new ArrayList<>();
-
-	public void addDeputy() {
-
+	
+	Supplier<Deputy> deputat = () -> {
+		
 		Scanner scan = new Scanner(System.in);
-
+		
 		System.out.print("Введіть прізвище депутата: ");
 		String surname = scan.next();
 		System.out.println();
@@ -56,18 +61,14 @@ public class Faction {
 		int height = scan.nextInt();
 		System.out.println();
 
-		Deputy dep = new Deputy(weight, height, surname, name, age, bribeTaker);
+		return new Deputy(weight, height, surname, name, age, bribeTaker);
+	};
+	
 
-		faction.add(dep);
-
-		System.out.println("Депутат доданий у фракцію!");
-
-	}
-
-	public void removeDeputy() {
-
+	Supplier<Deputy> deputatExist = () -> {
+		
 		Scanner scan = new Scanner(System.in);
-
+		
 		System.out.print("Введіть прізвище депутата: ");
 		String surname = scan.next();
 		System.out.println();
@@ -76,101 +77,72 @@ public class Faction {
 		String name = scan.next();
 		System.out.println();
 
-		boolean flag2 = isDeputyExist(faction, name, surname);
+		return new Deputy(surname, name);
+	};
+	
 
-		if (flag2) {
+	
+	public void addDeputy() {
+		Deputy dep = deputat.get();
+		faction.add(dep);
+		System.out.println("Депутат доданий у фракцію!");
 
-			Iterator<Deputy> iterator = faction.iterator();
+	}
 
-			while (iterator.hasNext()) {
+	public void removeDeputy() {
 
-				Deputy next = iterator.next();
+		Deputy dep = deputatExist.get();
+		
+		Predicate<Deputy> newDep = deputy -> deputy.getSurname()
+				.equalsIgnoreCase(dep.getSurname()) && deputy.getName()
+				.equalsIgnoreCase(dep.getName());
+		
+		Optional<Deputy> deputyFound = faction.stream().filter(newDep).findFirst();
 
-				if (next.getSurname().equals(surname) && next.getName().equals(name)) {
-					System.out.println(next.getSurname() + next.getName() + " Буде видалений!");
-					iterator.remove();
+		if (deputyFound.isPresent()) {
+			faction.remove(deputyFound.get());
+			System.out.println("Депутат " + deputyFound.get().toString() + " видалений");
 
-				}
-
-			}
-
-		} 
-			
+		} else {
+			System.out.println("Депутат не існує!");
+		}		
 
 	}
 
 	public void allBribeTakers() {
 
-		for (Deputy dep : faction) {
-
-			if (dep.isBribeTaker()==true) {
-
-				System.out.println(dep.toString());
-			
-
-			}
-
-		}
+		List<Deputy> bribeTakers = faction.stream().filter(Deputy::isBribeTaker).collect(Collectors.toList());
+		bribeTakers.forEach(System.out::println);
 
 	}
 
 	public void bigBribeTaker() {
 
-		int max = 0;
+		Comparator<Deputy> deputyBribeSizeComparator = (deputy1,
+				deputy2) -> (deputy1.getBribeSize() > deputy2.getBribeSize()) ? 1
+						: (deputy1.getBribeSize() == deputy2.getBribeSize()) ? 0 : -1;
+		Optional<Deputy> largestBribeTaker = faction.stream().filter(Deputy::isBribeTaker)
+				.max(deputyBribeSizeComparator);
 
-		for (Deputy dep : faction) {
-
-			if (dep.getBribeSize() > max) {
-				max = dep.getBribeSize();
-			}
-
+		if (largestBribeTaker.isPresent()) {
+			System.out.println("Big BribeTaker " + largestBribeTaker.get().toString());
+		} else {
+			System.out.println("BribeTaker is not exist!");
 		}
 
-		for (Deputy dep : faction) {
-			
-			if(dep.getBribeSize() == max)
-			System.out.print("Найбільшим хабарником у фракції є: " + dep.toString());
-
-		}
 
 	}
 	
 	
 	public void allDeputyFaction() {
 		
-		for (Deputy dep : faction) {
-
-			System.out.println(dep.toString());
-			
-		}
+		faction.forEach(System.out::println);
 		
 	}
 	
 	public void clearFaction() {
-		
-		for (Deputy dep : faction) {
-
-			faction.clear();
-			
-		}
-		
-		System.out.println("У франції більше немає депутатів!");
-		
-		
+		faction.clear();		
 	}
 	
-
-	private static boolean isDeputyExist(ArrayList<Deputy> faction, String name, String surname) {
-		boolean flag = false;
-
-		for (Deputy deputy : faction) {
-
-			if (deputy.getName().equals(name) && deputy.getSurname().equals(surname)) {
-				flag = true;
-			}
-		}
-
-		return flag;
-	}
 
 }
