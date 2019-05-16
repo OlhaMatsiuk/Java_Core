@@ -2,10 +2,12 @@ package ua.lviv.lgs;
 
 public class Seance implements Comparable<Seance> {
 
-	 Movie movie;
+	private Movie movie;
 	private Time sratrtTime;
 	private Time endTime;
 	private Integer st;
+	private Integer id;
+	public static int f = 0;
 
 	public Seance(Movie movie, Time sratrtTime) {
 
@@ -14,14 +16,16 @@ public class Seance implements Comparable<Seance> {
 		this.endTime = new Time(sratrtTime.getMin() + movie.getDuration().getMin(),
 				sratrtTime.getHour() + movie.getDuration().getHour());
 		this.st = this.sratrtTime.getHour();
-
+		this.id = f++;
 	}
 
 	public Movie getMovie() {
 		return movie;
 	}
 	
-	
+	public Integer getID() {
+		return id;
+	}
 
 	public void setMovie(Movie movie) {
 		this.movie = movie;

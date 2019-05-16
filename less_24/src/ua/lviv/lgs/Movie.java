@@ -1,12 +1,11 @@
 package ua.lviv.lgs;
 
-public class Movie {
+public class Movie{
 	
 	private String title;
 	private Time duration;
 	
 	public Movie(String title, int duration) {
-		super();
 		this.title = title;
 		this.duration = new Time(duration);
 	}

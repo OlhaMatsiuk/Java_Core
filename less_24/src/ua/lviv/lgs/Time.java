@@ -27,7 +27,6 @@ public class Time {
 		}
 		if(min < 0 || hour < 0)
 			System.out.println("Неправильно введений час!!!");
-		
 	}
 	
 
